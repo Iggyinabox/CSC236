@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab NumberHere
+ * Lab 1-A
  */
 
 package parkingticketsimulator;
@@ -19,6 +19,10 @@ public class ParkingMeter {
         minutesPuchased = time;
     }
     
+    /**
+     * This method allows for the stMinutesPuchased variable to be set.
+     * @param time
+     */
     public void setMinutesPuchased(int time){
         minutesPuchased = time;
     }

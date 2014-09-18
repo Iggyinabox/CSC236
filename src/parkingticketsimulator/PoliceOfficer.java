@@ -1,20 +1,21 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab NumberHere
+ * Lab 1-A
  */
 
 package parkingticketsimulator;
 
 /**
- *
+ *This class simulates a police officer with an unique name and badge id
+ * This class is the aggregate and has a relationship to the ParkedCar,
+ * ParkingMeter, and ParkingTicket classes
  * @author ilorenzo
  */
 public class PoliceOfficer {
     
     private String officerName;
     private int officerBadgeNumber;
-    private boolean ticketIssued;
     
     PoliceOfficer(String officerName, int officerBadgeNumber){
         
@@ -26,10 +27,18 @@ public class PoliceOfficer {
         officerBadgeNumber = obj2.officerBadgeNumber;
     }
     
+    /**
+     * Sets the officerName 
+     * @param officerName
+     */
     public void setName(String officerName){
         this.officerName = officerName;
     }
     
+    /**
+     * This method allows for the setBadgeNumber variable to be set.
+     * @param officerBadgeNumber
+     */
     public void setBadgeNumber(int officerBadgeNumber){
         this.officerBadgeNumber = officerBadgeNumber;       
     }
@@ -50,6 +59,12 @@ public class PoliceOfficer {
         return officerBadgeNumber;
     }
   
+    /**
+     *
+     * @param car
+     * @param meter
+     * @return
+     */
     public ParkingTicket patrol(ParkedCar car, ParkingMeter meter){
         ParkingTicket pt;
         
@@ -67,6 +82,7 @@ public class PoliceOfficer {
     }
 
     
+    @Override
     public String toString(){
         String str = "\nOfficer Name: " + officerName + "\nBadge Number: " 
                 + officerBadgeNumber;

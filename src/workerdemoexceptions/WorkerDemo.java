@@ -7,7 +7,7 @@
 package workerdemoexceptions;
 
 /**
- *
+ * This class demonstrates the Employee class
  * @author ilorenzo
  */
 public class WorkerDemo {

@@ -8,7 +8,8 @@ package workerdemo;
 
 
 /**
- *
+ * This class simulates and employee with a name, employee number, and a hire
+ * date
  * @author ilorenzo
  */
 public class Employee {
@@ -29,30 +30,55 @@ public class Employee {
         this.hireDate = hireDate;
     }
     
+    /**
+     * This method allows for setName to be set
+     * @param name
+     */
     public void setName(String name){
         this.name = name;
     }
     
+    /**
+     * This method allows for employeeNumber to be set
+     * @param employeeNumber
+     */
     public void setEmployeeNumber(String employeeNumber){
         this.employeeNumber = employeeNumber;
     }
     
+    /**
+     * This method allows for hireDate to be set
+     * @param hireDate
+     */
     public void setHireDate(String hireDate){
         this.hireDate = hireDate;
     }
     
+    /**
+     * This method returns the String held in name
+     * @return
+     */
     public String getName(){
         return name;
     }
     
+    /**
+     * This method returns the String held in employeeNumber
+     * @return
+     */
     public String getEmployeeNumber(){
         return employeeNumber;
     }
     
+    /**
+     * This method returns the String held in hireDate
+     * @return
+     */
     public String getHireDate(){
         return hireDate;
     }
     
+    //This no arg method will check to see if the employeeNumber is valid
     private boolean isValidEmpNum(){
         
         boolean isValid = false;

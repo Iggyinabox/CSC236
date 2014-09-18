@@ -9,7 +9,8 @@ package workerdemoexceptions;
 import java.text.DecimalFormat;
 
 /**
- *
+ * This class extends Employee and simulates a production worker holding data
+ * for the shift they work and their pay rate.
  * @author ilorenzo
  */
 public class ProductionWorker extends Employee {
@@ -28,16 +29,21 @@ public class ProductionWorker extends Employee {
             int shift,double payRate) 
             throws InvalidShift, InvalidPayRate, InvalidEmployeeNumber{
         super(name,employeeNumber,hireDate);
-        
+        //Condintonal statement to throw error if invalid number is being set
         if(shift != DAY_SHIFT && shift != NIGHT_SHIFT )
             throw new InvalidShift(shift);
         this.shift = shift;
-        
+        //ondintonal statement to throw error if negiative number is being set
         if(payRate < 0)
             throw new InvalidPayRate(payRate);
         this.payRate = payRate;
     }
     
+    /**
+     * This method allows for shift to be set
+     * @param shift
+     * @throws InvalidShift
+     */
     public void setShift(int shift) throws InvalidShift{
         if(shift != DAY_SHIFT || shift != NIGHT_SHIFT )
             throw new InvalidShift(shift);
@@ -45,6 +51,11 @@ public class ProductionWorker extends Employee {
         this.shift = shift;
     }
     
+    /**
+     * This method allows for payRate to be set
+     * @param payRate
+     * @throws InvalidPayRate
+     */
     public void setPayRate(double payRate) throws InvalidPayRate{
         if(payRate < 0)
             throw new InvalidPayRate(payRate);
@@ -52,10 +63,18 @@ public class ProductionWorker extends Employee {
         this.payRate = payRate;
     }
     
+    /**
+     * This method returns the int held in shift
+     * @return
+     */
     public int getShift(){
         return shift;
     }
     
+    /**
+     * This method returns the double held in payRate 
+     * @return
+     */
     public double getPayRate(){
         return payRate;
     }

@@ -6,7 +6,7 @@
 package workerdemoexceptions;
 
 /**
- *
+ * This exceptions is thrown when a employees pay rate is set below 0
  * @author ilorenzo
  */
 public class InvalidPayRate extends Exception{

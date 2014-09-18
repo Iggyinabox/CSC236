@@ -7,7 +7,8 @@
 package parkingticketsimulator;
 
 /**
- *
+ * This class simulates a parked cat with a make model color and lic plate.
+ * It also holds the int value for the amount of time the car has been parked.
  * @author ilorenzo
  */
 public class ParkedCar {
@@ -17,7 +18,8 @@ public class ParkedCar {
     private int minutesParked;
     
     
-    ParkedCar(String make,String model, String color, String licenseNum,int timeParked){
+    ParkedCar(String make,String model, String color, String licenseNum,
+            int timeParked){
         
         carMake = make;
         carModel = model;
@@ -44,19 +46,43 @@ public class ParkedCar {
         minutesParked = obj2.minutesParked;
     
     }
+
+    /**
+     * This method allows for the carkMarke variable to be set.
+     * @param make
+     */
     public void setMake(String make){
         carMake = make;
     }
+
+    /**
+     * This method allows for the carModel variable to be set.
+     * @param model
+     */
     public void setModel(String model){
         carModel = model;
     }
     
+    /**
+     * This method allows for the carColor variable to be set.
+     * @param color
+     */
     public void setColor(String color){
         carColor = color;
     }
+
+    /**
+     * This method allows for the carLicenseNum variable to be set.
+     * @param licenseNum
+     */
     public void setLicenseNumber(String licenseNum){
         carLicenseNum = licenseNum;
     }
+
+    /**
+     * This method allows for the setMinutesParked variable to be set.
+     * @param timeParked
+     */
     public void setMinutesParked(int timeParked){
         minutesParked = timeParked;
     }
@@ -100,6 +126,7 @@ public class ParkedCar {
         return minutesParked;
     }
     
+    @Override
     public String toString(){
         String str = "Make:" + carMake + "\nModel:" 
                     + carModel + "\nColor:"+ carColor 

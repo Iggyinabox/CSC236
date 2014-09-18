@@ -5,10 +5,8 @@
  */
 
 package parkingticketsimulator;
-
-import java.util.Scanner;
 /**
- *
+ * This demonstrates the PoliceOfficer Class
  * @author ilorenzo
  */
 public class ParkingTicketSimulator {
@@ -31,7 +29,8 @@ public class ParkingTicketSimulator {
         meterReading = 60;
         
         PoliceOfficer po = new PoliceOfficer(name, badgeNumber);
-        ParkedCar pc = new ParkedCar(carMake, carModel, carColor, carLicensePlate,carTimeParked);
+        ParkedCar pc = new ParkedCar(carMake, carModel, carColor, 
+                carLicensePlate,carTimeParked);
         
         System.out.println(pc.toString());
         System.out.println(po.toString());

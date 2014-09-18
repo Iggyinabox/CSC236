@@ -6,7 +6,9 @@
 package workerdemoexceptions;
 
 /**
- *
+ * This exception is thrown when an id is set for an employee that does not
+ * match the following criteria:
+ * - 3 integers
  * @author ilorenzo
  */
 public class InvalidEmployeeNumber extends Exception {

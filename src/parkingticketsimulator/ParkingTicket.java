@@ -1,13 +1,14 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab NumberHere
+ * Lab 1-A
  */
 
 package parkingticketsimulator;
 
 /**
- *
+ * This class simulates a parking mete and holds the amount of minutes 
+ * purchased
  * @author ilorenzo
  */
 public class ParkingTicket {
@@ -61,30 +62,47 @@ public class ParkingTicket {
         fine = total;
     }
     
+    /**
+     * This method allows for the setCar variable to be set.
+     * @param car
+     */
     public void setCar(ParkedCar car){
         this.car = car.toString();
     }
     
+    /**
+     * This method allows for the setOfficer variable to be set.
+     * @param officer
+     */
     public void setOfficer(PoliceOfficer officer){
         this.officer = officer.toString();
     }
     
+    /**
+     * This method returns the value held in car
+     * @return String object
+     */
     public String getCar(){
         return car;
     }
 
     /**
-     * This method will return the value head in fine
+     * This method returns the value held in fine
      * @return the int held in the fine value
      */    
     public int getFine(){
         return fine;
     }
     
+    /**
+     * This method returns the value held in officer
+     * @return
+     */
     public String getOfficer(){
         return officer;
     }
     
+    @Override
     public String toString(){
         
         String str = car + officer + "\nFine Issued: $" + fine;

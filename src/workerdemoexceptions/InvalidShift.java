@@ -6,7 +6,8 @@
 package workerdemoexceptions;
 
 /**
- *
+ * This exception is thrown when shift is set to an invalid int. The valid
+ * ints are 1 for Day and 2 for night.
  * @author ilorenzo
  */
 public class InvalidShift extends Exception {

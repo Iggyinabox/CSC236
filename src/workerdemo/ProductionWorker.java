@@ -9,7 +9,8 @@ package workerdemo;
 import java.text.DecimalFormat;
 
 /**
- *
+ * This class extends Employee and simulates a production worker holding data
+ * for the shift they work and their pay rate.
  * @author ilorenzo
  */
 public class ProductionWorker extends Employee {
@@ -30,22 +31,39 @@ public class ProductionWorker extends Employee {
         this.payRate = payRate;
     }
     
+    /**
+     * This method allows for shift to be set
+     * @param shift
+     */
     public void setShift(int shift){
         this.shift = shift;
     }
     
+    /**
+     * This method allows for payRate to be set
+     * @param payRate
+     */
     public void setPayRate(double payRate){
         this.payRate = payRate;
     }
     
+    /**
+     * This method returns the int held in shift
+     * @return
+     */
     public int getShift(){
         return shift;
     }
     
+    /**
+     * This method returns the double held in payRate 
+     * @return
+     */
     public double getPayRate(){
         return payRate;
     }
     
+    @Override
     public String toString(){
         DecimalFormat pay = new DecimalFormat("$#,##0.00");
         

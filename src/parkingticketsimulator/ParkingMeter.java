@@ -19,10 +19,6 @@ public class ParkingMeter {
         minutesPuchased = time;
     }
     
-    ParkingMeter(ParkingMeter obj2){
-        minutesPuchased = obj2.minutesPuchased;
-    }
-    
     public void setMinutesPuchased(int time){
         minutesPuchased = time;
     }

@@ -12,19 +12,26 @@ package parkingticketsimulator;
  */
 public class PoliceOfficer {
     
-    private final String officerName;
-    private final int officerBadgeNumber;
-    private int fine;
-    private ParkingTicket parkingTicket;
-    private ParkedCar parkedCar;
-    private ParkingMeter parkingMeter;
+    private String officerName;
+    private int officerBadgeNumber;
+    private boolean ticketIssued;
     
-    PoliceOfficer(String name, int badgeNum){
+    PoliceOfficer(String officerName, int officerBadgeNumber){
         
-        officerName = name;
-        officerBadgeNumber = badgeNum;
-        
-        
+        this.officerName = officerName;
+        this.officerBadgeNumber = officerBadgeNumber;   
+    }
+    PoliceOfficer(PoliceOfficer obj2){
+        officerName = obj2.officerName;
+        officerBadgeNumber = obj2.officerBadgeNumber;
+    }
+    
+    public void setName(String officerName){
+        this.officerName = officerName;
+    }
+    
+    public void setBadgeNumber(int officerBadgeNumber){
+        this.officerBadgeNumber = officerBadgeNumber;       
     }
     
     /**
@@ -39,70 +46,31 @@ public class PoliceOfficer {
      * This method will return the officers badge number as an int value
      * @return value held in officerBadgeNumber
      */
-    public int getBadge(){
+    public int getBadgeNumber(){
         return officerBadgeNumber;
     }
-    
-    /**
-     * The calcFee method will calculate the fine for the parking ticket
-     * @param parkedTime
-     * @param meterTime
-     */
-    public void calcFine(int parkedTime, int meterTime){
-        int total = 0;
-        int minOver = parkedTime - meterTime;
-        int hour = minOver / 60;
-        int partOfHour = minOver % 60;
-        boolean firstTime = true;
+  
+    public ParkingTicket patrol(ParkedCar car, ParkingMeter meter){
+        ParkingTicket pt;
         
-        if(hour > 0){
-            total += 25;
-            --hour;
-            firstTime = false;
+        if(car.getMinutesParked() - meter.getMinutesPuchased() > 0){  
+            pt = new ParkingTicket(meter,car,this);
+            pt.calcFine();
+           // ticketIssued = true;
         }else{
-            total = 25;
+            pt = null;
+           // ticketIssued = true;
         }
         
-        while(hour > 0){
-            total += 10;
-            --hour;
-        }
-        
-        if(!firstTime && partOfHour > 0)
-            total+=10;
-        
-        fine = total;
-    }
-    
-    /**
-     * This method will return the value head in fine
-     * @return the int held in the fine value
-     */
-    public int getFine(){
-        return fine;
+        return pt;
+            
     }
 
-    /**
-     * This method simulates the police officer checking the car and getting
-     * all the relevant info copied over from the car object and parking meter 
-     * object. It will then check if the car has been parked longer than the
-     * what was paid for. If this is true a parkingTicket object will be created.
-     * @param car an argument that holds the ParkedCar object
-     * @param meter an argument that holds the ParkingMeter object
-     */
-    public void checkParkedCar(ParkedCar car, ParkingMeter meter){
+    
+    public String toString(){
+        String str = "\nOfficer Name: " + officerName + "\nBadge Number: " 
+                + officerBadgeNumber;
         
-        parkedCar = new ParkedCar(car);
-        parkingMeter = new ParkingMeter(meter);
-        
-        if(parkedCar.getMinutesParked() >= parkingMeter.getMinutesPuchased()){
-            calcFine(parkedCar.getMinutesParked(), parkingMeter.getMinutesPuchased());
-            parkingTicket = new ParkingTicket(parkedCar, officerName, 
-                                              officerBadgeNumber, fine);
-        }else{
-            
-            System.out.println("This car still has "+ (parkingMeter.getMinutesPuchased() 
-                               - parkedCar.getMinutesParked())+ " minutes left");
-        }
-    }   
+        return str;
+    }
 }

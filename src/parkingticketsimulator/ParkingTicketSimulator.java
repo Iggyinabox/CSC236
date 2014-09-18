@@ -17,42 +17,35 @@ public class ParkingTicketSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         
-        Scanner key = new Scanner(System.in);
         String name, carMake, carModel,carColor, carLicensePlate;
-        int badgeNumber, meterReading;
+        int badgeNumber, meterReading, carTimeParked;
         
-        System.out.print("What is your name?:");
-        name = key.nextLine();
+        name = "Joe Friday";
+        badgeNumber = 4788;
+        carMake = "Volkswagon";
+        carModel = "1972";
+        carColor = "Red";
+        carLicensePlate = "147RHZM";
+        carTimeParked = 60;
+        meterReading = 60;
         
-        System.out.print("What is your badge number?:");
-        badgeNumber = key.nextInt();
-        
-        System.out.println("\nOfficer "+name+" reporting for duty!");
         PoliceOfficer po = new PoliceOfficer(name, badgeNumber);
+        ParkedCar pc = new ParkedCar(carMake, carModel, carColor, carLicensePlate,carTimeParked);
         
-        System.out.println("While walking the beat you decied to check some cars");
-        System.out.println("As you approch a car you start to examine it.");
-        System.out.print("You notice the make, model, color, and license plate numbers are:");
-        carMake = key.next();
-        carModel = key.next();
-        carColor = key.next();
-        carLicensePlate = key.next();
-        
-        ParkedCar pc = new ParkedCar(carMake, carModel, carColor, carLicensePlate,80);
-        System.out.println("\nThe car has been parked for "+ pc.getMinutesParked()
-                           +  " minutes");
-        
-        System.out.println("You walk over to the metter and check how many minutes"
-                + " have been puchased");
-        System.out.print("The meter reads: ");
-        meterReading = key.nextInt();
+        System.out.println(pc.toString());
+        System.out.println(po.toString());
         
         ParkingMeter pm = new ParkingMeter(meterReading);
         
+        ParkingTicket pt = po.patrol(pc, pm);
         
-        po.checkParkedCar(pc, pm);
+        if(pt != null)
+            System.out.println("\nThis car has been illegally parked for "
+                + (carTimeParked - meterReading) + " min. A ticket has " 
+                + "been issued with a $"+ pt.getFine() + " fine.");
+        else
+            System.out.println("\nNo crimes have been committed.");
         
     }
 }

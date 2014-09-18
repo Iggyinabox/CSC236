@@ -54,7 +54,7 @@ public class ParkedCar {
     public void setColor(String color){
         carColor = color;
     }
-    public void setLicNum(String licenseNum){
+    public void setLicenseNumber(String licenseNum){
         carLicenseNum = licenseNum;
     }
     public void setMinutesParked(int timeParked){
@@ -88,7 +88,7 @@ public class ParkedCar {
      * This method will return the value in carLiceNum
      * @return the String value held in carLicenseNum
      */
-    public String getLicNum(){
+    public String getLicenseNumber(){
         return carLicenseNum;
     }
     
@@ -98,5 +98,13 @@ public class ParkedCar {
      */
     public int getMinutesParked(){
         return minutesParked;
+    }
+    
+    public String toString(){
+        String str = "Make:" + carMake + "\nModel:" 
+                    + carModel + "\nColor:"+ carColor 
+                    + "\nLicense Plate#:" + carLicenseNum;
+        
+        return str;
     }
 }

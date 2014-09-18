@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab Lab 1-B
+ * Lab Lab 1-C
  */
 
 package workerdemoexceptions;
@@ -23,8 +23,12 @@ public class Employee {
         hireDate = "";
     }
     
-    Employee(String name,String employeeNumber,String hireDate ){
+    Employee(String name,String employeeNumber,String hireDate ) 
+            throws InvalidEmployeeNumber{
         this.name = name;
+        if(!isValidEmpNum(employeeNumber))
+            throw new InvalidEmployeeNumber(employeeNumber);
+        
         this.employeeNumber = employeeNumber;
         this.hireDate = hireDate;
     }
@@ -33,7 +37,9 @@ public class Employee {
         this.name = name;
     }
     
-    public void setEmployeeNumber(String employeeNumber){
+    public void setEmployeeNumber(String employeeNumber) throws InvalidEmployeeNumber{
+        if(!isValidEmpNum(employeeNumber))
+            throw new InvalidEmployeeNumber(employeeNumber);
         this.employeeNumber = employeeNumber;
     }
     
@@ -57,21 +63,37 @@ public class Employee {
         
         boolean isValid = false;
         
-        if(employeeNumber.length() != 5){
+        if(employeeNumber.length() != 3){
             return false;
         }else{
-            if(employeeNumber.charAt(3) != '-')
-                return false;
-            else{
-                if((employeeNumber.charAt(4) >= 'A' && employeeNumber.charAt(4)<='M'))
-                    for(int i = 0;i < employeeNumber.length()-2; i++){
-                        if(Character.isDigit(employeeNumber.charAt(i)))
-                            isValid = true;
-                        else
-                            return false;
-                }
+            for(int i = 0;i < employeeNumber.length(); i++){
+                if(Character.isDigit(employeeNumber.charAt(i)))
+                    isValid = true;
+                else
+                    return false;
             }
         }
+        
+        
+        return isValid;
+            
+    }
+    
+    private boolean isValidEmpNum(String employeeNumber){
+        
+        boolean isValid = false;
+        
+        if(employeeNumber.length() != 3){
+            return false;
+        }else{
+            for(int i = 0;i < employeeNumber.length(); i++){
+                if(Character.isDigit(employeeNumber.charAt(i)))
+                    isValid = true;
+                else
+                    return false;
+            }
+        }
+        
         
         return isValid;
             

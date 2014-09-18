@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab Lab 1-B
+ * Lab Lab 1-C
  */
 
 package workerdemoexceptions;
@@ -24,17 +24,31 @@ public class ProductionWorker extends Employee {
         payRate = 8.25;
     }
     
-    ProductionWorker(String name,String employeeNumber,String hireDate, int shift,double payRate){
+    ProductionWorker(String name,String employeeNumber,String hireDate, 
+            int shift,double payRate) 
+            throws InvalidShift, InvalidPayRate, InvalidEmployeeNumber{
         super(name,employeeNumber,hireDate);
+        
+        if(shift != DAY_SHIFT && shift != NIGHT_SHIFT )
+            throw new InvalidShift(shift);
         this.shift = shift;
+        
+        if(payRate < 0)
+            throw new InvalidPayRate(payRate);
         this.payRate = payRate;
     }
     
-    public void setShift(int shift){
+    public void setShift(int shift) throws InvalidShift{
+        if(shift != DAY_SHIFT || shift != NIGHT_SHIFT )
+            throw new InvalidShift(shift);
+        
         this.shift = shift;
     }
     
-    public void setPayRate(double payRate){
+    public void setPayRate(double payRate) throws InvalidPayRate{
+        if(payRate < 0)
+            throw new InvalidPayRate(payRate);
+        
         this.payRate = payRate;
     }
     
@@ -60,8 +74,10 @@ public class ProductionWorker extends Employee {
         else
             str += "INVALID SHIFT SELECTION";
         
-        str += "\nPay Rate per Hour:" + pay.format(payRate);
-        
+        if(payRate > 0)
+            str += "\nPay Rate per Hour:" + pay.format(payRate);
+        else
+            str += "\nPay Rate per Hour:" + "INVALID PAY RATE";
         return str;
     }
 }

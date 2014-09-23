@@ -14,7 +14,7 @@ public class RecursiveIsMember {
     public static void main(String[]args){
         
         int[] intArray = {2,4,6,8,10,12,14,16,18,20};
-        int i = 18;
+        int i = 0;
         
         isMember(intArray,i);
     }

@@ -17,6 +17,6 @@ public class InvalidShift extends Exception {
     }
     
     public InvalidShift(int shift){
-        super("Error: " + shift + " is and invlid shift");
+        super("Error: " + shift + " is an invlid shift");
     }
 }

@@ -25,10 +25,10 @@ public class WorkerDemo {
     
      static public void createWorker(){
         String name ="John Smith";
-        String employeeNumber = "1234";
+        String employeeNumber = "123";
         String hireDate = "11-15-2009";
         int shift = 1;
-        double payRate = 16.50;
+        double payRate = -99.00;
         
         try{
         Employee emp = new ProductionWorker(name,employeeNumber,hireDate,shift,payRate);

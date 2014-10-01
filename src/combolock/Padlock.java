@@ -21,18 +21,29 @@ public class Padlock {
     int status;
     int state;
     int currentTopNumber;
+    int dialSize = 40;
+    CircularDoubleLinkedList<Integer> dial;
     
-    
-    Padlock(){
+    /**
+     *
+     */
+    public Padlock(){
         x = 0;
         y = 0;
         z = 0;
         status = IS_SHUT;
         state = IS_LOCKED;
         currentTopNumber = 0;
+        fillDial();
     }
     
-    Padlock(int x, int y, int z){
+    /**
+     *
+     * @param x
+     * @param y
+     * @param z
+     */
+    public Padlock(int x, int y, int z){
         this.x = x;
         this.y = y;
         this.z = z;
@@ -41,7 +52,16 @@ public class Padlock {
         currentTopNumber = 0;
     }
     
-    Padlock(int x, int y, int z, int status, int state, int currentTopNumber){
+    /**
+     *
+     * @param x
+     * @param y
+     * @param z
+     * @param status
+     * @param state
+     * @param currentTopNumber
+     */
+    public Padlock(int x, int y, int z, int status, int state, int currentTopNumber){
         this.x = x;
         this.y = y;
         this.z = z;
@@ -50,6 +70,12 @@ public class Padlock {
         this.currentTopNumber = currentTopNumber;
     }
     
+    /**
+     *
+     * @param x
+     * @param y
+     * @param z
+     */
     public void setCombination(int x, int y, int z){
         this.x = x;
         this.y = y;
@@ -57,20 +83,46 @@ public class Padlock {
         
     }
     
+    /**
+     * 
+     * @param number
+     */
     public void turnDial(int number){
         
     }
     
+    /**
+     *
+     */
     public void attemptToOpen(){
         
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean lockStatus(){
         return false;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getCurrentTopNumber(){
         return currentTopNumber;
+    }
+    
+    //Used to fill the Dial with numbers
+    private void fillDial(){
+        dial = new CircularDoubleLinkedList();
+        
+        for(int i = 0;i < dialSize;i++){
+            dial.add(i);
+        }
+        //Test Code
+        //dial.displayTest();
     }
     
     

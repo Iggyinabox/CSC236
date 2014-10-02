@@ -104,7 +104,7 @@ public class CircularDoubleLinkedList<E> {
     }
     
     /**
-     *
+     * Adds a new node to the front of the list
      * @param obj
      */
     public void addFirst(E obj){
@@ -128,7 +128,7 @@ public class CircularDoubleLinkedList<E> {
     }
     
     /**
-     *
+     * returns the element in the head node
      * @return
      */
     public E element(){
@@ -136,7 +136,7 @@ public class CircularDoubleLinkedList<E> {
     }
     
     /**
-     *
+     * returns a listIterator for this collection
      * @return
      */
     public CircularListIterator listIterator(){
@@ -170,18 +170,26 @@ public class CircularDoubleLinkedList<E> {
     }
     */ 
     
+    /**
+     * Nested Iterator for the Circular doubly linked list
+     * @param <E> 
+     */
     public class CircularListIterator<E> implements ListIterator<E>{
         public DoublyLinkedListNode<E> current;
         
         public CircularListIterator(DoublyLinkedListNode<E> current){
             this.current = current;
         }
-        
+        //returns true if node refences another node gowing foward, false
+        //otherwise
         @Override
         public boolean hasNext(){
             return current.getNext() != null;
         }
-        
+        /**
+         * returns true if node refences another node gowing backwards, false
+         * otherwise
+         */
         @Override
         public boolean hasPrevious(){
             return current.getPrev() != null;
@@ -207,7 +215,10 @@ public class CircularDoubleLinkedList<E> {
             while(current.getNext() != firstNode)
                 current.getNext();
         }
-
+        //unsopted methods
+        //these are need for the implimentation
+        //I will update this when I generlize this linked list to work
+        //with other classes
         @Override
         public int nextIndex() {
             throw new UnsupportedOperationException("Not supported yet."); 

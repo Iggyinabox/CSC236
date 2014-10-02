@@ -28,7 +28,8 @@ public class Padlock {
     private CircularDoubleLinkedList.CircularListIterator dialItr;
     
     /**
-     *
+     * This constructor creates a padlock object with a combination of 0 0 0
+     * which is current shut and locked. The number on the top is set to 0
      */
     public Padlock(){
         x = 0;
@@ -42,7 +43,9 @@ public class Padlock {
     }
     
     /**
-     *
+     * This constructor takes 3 ints and arg and uses them to set the
+     * combination of the lock. If x y or z are not valid integers 
+     * an IllegalArgumentException is thrown
      * @param x
      * @param y
      * @param z
@@ -71,7 +74,9 @@ public class Padlock {
     }
     
     /**
-     *
+     * This constructor take args to set the combination of the lock as well
+     * as setting if the lock is open, shut, locked, or unlocked. The number
+     * that is currently at the top is also set.
      * @param x
      * @param y
      * @param z
@@ -97,13 +102,19 @@ public class Padlock {
             this.z = z;
         this.status = status;
         this.state = state;
-        this.currentTopNumber = currentTopNumber;
+        
+        if(currentTopNumber < 0 || currentTopNumber > dialSize){
+            throw new IllegalArgumentException(z + 
+                    " is not a valid combination number");
+        }else
+            this.currentTopNumber = currentTopNumber;
         fillDial();
         dialItr = dial.listIterator();
     }
     
     /**
-     *
+     * This method allows for the combination for the lock to be changed. If
+     * invalid integers are passed a IllegalArgumentException is thrown.
      * @param x
      * @param y
      * @param z
@@ -125,12 +136,15 @@ public class Padlock {
         }else
             this.z = z;
         //set dial to 0 after changing code
+        //I found when I didnt do this I couldnt open the lock poperly
+        //after changing the combo
         dialItr.setToFirst();
         
     }
     
     /**
-     * 
+     * This method turns the dial in a given direction until the number
+     * pass to it shows up on top.
      * @param number
      * @param direction
      */
@@ -171,7 +185,7 @@ public class Padlock {
         //check to see if notch is aligned by checking if dial has been turned 
         //at the proper ammount of revolutions in the right direction and to
         //the right number
-        if(numberOfNotchesAligned == 0 && numberOfRevolutions == 1 && 
+        if(numberOfNotchesAligned == 0 && numberOfRevolutions > 1 && 
                 direction == 0 && currentTopNumber == x){
             numberOfNotchesAligned++;
             numberOfRevolutions = 0;
@@ -183,13 +197,22 @@ public class Padlock {
         }
         if(numberOfNotchesAligned == 2 && numberOfRevolutions == 0 && 
                 direction == 0 && currentTopNumber == z){
+            //once all 3 notices are aligned the lock is open
             state = IS_UNLOCKED;
             numberOfRevolutions = 0;
-        }     
+        }
+        
+        //If any of the revolutions are over steaped after the first notch is
+        //aligned
+        if(numberOfRevolutions > 1 && numberOfNotchesAligned > 1){
+            numberOfRevolutions = 0;
+            numberOfNotchesAligned = 0;
+        }
     }
     
     /**
-     *
+     * This method shuts the lock if it is open otherwise it will
+     * let the user know the lock is already shut.
      */
     public void closeLock(){
         if(status == IS_SHUT)
@@ -203,7 +226,9 @@ public class Padlock {
     }
     
     /**
-     * 
+     * This method makes an attempt to open the lock if the lock is unlocked
+     * it will open otherwise it will remain shut. In both cases the user
+     * is given details as to what happened with the attempt
      */
     public void attemptToOpen(){
         if(state == IS_LOCKED){
@@ -218,7 +243,7 @@ public class Padlock {
     }
     
     /**
-     *
+     * This method returns true if the lock is open false if it is shut
      * @return
      */
     public boolean lockStatus(){
@@ -226,7 +251,7 @@ public class Padlock {
     }
     
     /**
-     *
+     * This method will return the number currently at the top of the dial
      * @return
      */
     public int getCurrentTopNumber(){

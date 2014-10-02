@@ -8,19 +8,22 @@ package combolock;
 import java.util.Scanner;
 
 /**
- *
+ * This class demonstrates the padlock class.
  * @author ilorenzo
  */
 public class PadlockDemo {
     
     public static void main(String[] args){
+        //scanner class for capturing user input
         Scanner key = new Scanner(System.in);
+        //Create a padlock with the combination 6 3 6
         Padlock lock = new Padlock(6,3,6);
+        //Value for our while loop this will change as users traverse the menu
         int selection = 7;
         
         System.out.println("You are looking down at a combination lock."
                 + " What would you like to do?");
-        
+        //The menu will keep coming up till the user types 0
         while(selection != 0){
             System.out.println("------------------------------------------");
             System.out.println("| 1-Alter the locks Combination          |");
@@ -33,6 +36,8 @@ public class PadlockDemo {
             System.out.println("------------------------------------------");
         
             System.out.print("Selection: ");
+            //Check to make sure a int was entered
+            //if not this while loop will run till and int value is entered.
             while(!key.hasNextInt()){
                 System.out.println("That is not number!\n");
                 System.out.println("-----------------------------------------"
@@ -56,7 +61,33 @@ public class PadlockDemo {
                 System.out.print("Selection: ");
                 key.next();
             }
-            selection = key.nextInt();
+            //Use temp to hold the value to be tested
+            int temp = key.nextInt();
+            //check to make sure int is a valid selection
+            while(temp < 0 || temp > 6){
+                        System.out.println(temp + " is not a "
+                                + "valid selection");
+                        System.out.println("------------------------------"
+                                + "------------");
+                        System.out.println("| 1-Alter the locks Combinatio"
+                                + "n          |");
+                        System.out.println("| 2-Turn the dial             "
+                                + "           |");
+                        System.out.println("| 3-Close the lock            "
+                                + "           |");
+                        System.out.println("| 4-Attempt to open the lock  "
+                                + "           |");
+                        System.out.println("| 5-Check if the lock is open "
+                                + "or shut    |");
+                        System.out.println("| 6-Check what number is on to"
+                                + "p          |");
+                        System.out.println("|           Type 0 to exit    "
+                                + "           |");
+                        System.out.println("------------------------------"
+                                + "------------");
+                        temp = key.nextInt();
+                    }
+            selection = temp;
             
             switch(selection){
                 //Case 1 Alter the locks Comb
@@ -72,7 +103,7 @@ public class PadlockDemo {
                         key.next();
                     }
                     //temp var to hold number
-                    int temp = key.nextInt();
+                    temp = key.nextInt();
                     //check to see if the number is a valid selection
                     while(temp < 0 || temp > 39){
                         System.out.println("That number is too high!");
@@ -126,7 +157,7 @@ public class PadlockDemo {
                         temp = key.nextInt();
                     }
                     int z = temp;
-                    
+                    //set the x y z values as the new combo for padlock
                     lock.setCombination(x, y, z);
                     System.out.println("Your new combo is: "+ x + " " + y +" "
                             + "" + z);
@@ -221,14 +252,6 @@ public class PadlockDemo {
                     System.out.println("Exiting Program!");
                 
             }
-            
-            
-            
-        
         }
-        
-        
-
     }
-    
 }

@@ -6,7 +6,7 @@
 package combolock;
 
 /**
- *
+ * 
  * @author ilorenzo
  */
 public class DoublyLinkedListNode<E> {

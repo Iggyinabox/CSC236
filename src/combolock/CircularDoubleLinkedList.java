@@ -180,14 +180,14 @@ public class CircularDoubleLinkedList<E> {
         public CircularListIterator(DoublyLinkedListNode<E> current){
             this.current = current;
         }
-        //returns true if node refences another node gowing foward, false
+        //returns true if node refences another node growing foward, false
         //otherwise
         @Override
         public boolean hasNext(){
             return current.getNext() != null;
         }
         /**
-         * returns true if node refences another node gowing backwards, false
+         * returns true if node refences another node growing backwards, false
          * otherwise
          */
         @Override
@@ -211,10 +211,6 @@ public class CircularDoubleLinkedList<E> {
             return current.getValue();
         }
         
-        public void setToFirst(){
-            while(current.getNext() != firstNode)
-                current.getNext();
-        }
         //unsopted methods
         //these are need for the implimentation
         //I will update this when I generlize this linked list to work

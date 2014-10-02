@@ -135,11 +135,12 @@ public class Padlock {
                     " is not a valid combination number");
         }else
             this.z = z;
-        //set dial to 0 after changing code
-        //I found when I didnt do this I couldnt open the lock poperly
-        //after changing the combo
-        dialItr.setToFirst();
-        
+        //with out this I noticed when I changed combos the lock
+        //would not open correctly so the top number gets reset to 0
+        do{
+            dialItr.next();
+            }while((Integer)dialItr.current.getValue() != 0);
+        currentTopNumber = (Integer)dialItr.current.getValue();
     }
     
     /**
@@ -155,9 +156,6 @@ public class Padlock {
             do{
                 System.out.print(dialItr.current.getValue()+" ");
                 dialItr.previous();
-                //check to see if a full revolution has been made
-                if(currentTopNumber == (Integer)dialItr.current.getValue())
-                    numberOfRevolutions++;
             }while((Integer)dialItr.current.getValue() != number);
             System.out.print(dialItr.current.getValue() + "\n");
             //set currentTopNumber to the value of the obj the iterator is
@@ -170,18 +168,17 @@ public class Padlock {
             do{
                 System.out.print(dialItr.current.getValue()+" ");
                 dialItr.next();
-                //check to see if a full revolution has been made
-                if(currentTopNumber == (Integer)dialItr.current.getValue())
-                    numberOfRevolutions++;
             }while((Integer)dialItr.current.getValue() != number);
             System.out.print(dialItr.current.getValue() + "\n");
             //set currentTopNumber to the value of the obj the iterator is
             // currently point to.
             currentTopNumber = (Integer)dialItr.current.getValue();
-            
-            
         } 
-         
+        
+        //check to see if a full revolution has been made
+        if(currentTopNumber == (Integer)dialItr.current.getValue())
+            numberOfRevolutions++;
+        
         //check to see if notch is aligned by checking if dial has been turned 
         //at the proper ammount of revolutions in the right direction and to
         //the right number
@@ -189,17 +186,27 @@ public class Padlock {
                 direction == 0 && currentTopNumber == x){
             numberOfNotchesAligned++;
             numberOfRevolutions = 0;
+            //Test Code
+            //System.out.println("Notch"  + numberOfNotchesAligned 
+            //        + "opened");
         }
-        if(numberOfNotchesAligned == 1 && numberOfRevolutions == 1 && 
+        if(numberOfNotchesAligned == 1 && numberOfRevolutions == 2 && 
                 direction == 1 && currentTopNumber == y){
             numberOfNotchesAligned++;
             numberOfRevolutions = 0;
+            //Test Code
+            //System.out.println("Notch"  + numberOfNotchesAligned 
+            //        + "opened");
         }
-        if(numberOfNotchesAligned == 2 && numberOfRevolutions == 0 && 
+        if(numberOfNotchesAligned == 2 && numberOfRevolutions == 1 && 
                 direction == 0 && currentTopNumber == z){
             //once all 3 notices are aligned the lock is open
+            numberOfNotchesAligned++;
             state = IS_UNLOCKED;
             numberOfRevolutions = 0;
+            //Test Code
+            //System.out.println("Notch"  + numberOfNotchesAligned 
+            //        + "opened");
         }
         
         //If any of the revolutions are over steaped after the first notch is
@@ -235,6 +242,8 @@ public class Padlock {
             status = IS_SHUT;
             System.out.println("You pull at the lock with all your might but "
                     + "it seems it is locked.");   
+        }else if(status == IS_OPEN){
+            System.out.println("This is as open as it can get");
         }else{
             status = IS_OPEN;
             System.out.println("You pull at the lock and it opens up.");

@@ -5,10 +5,13 @@
  */
 package combolock;
 
+import java.util.ListIterator;
+
 /**
  * A Circular Linked List made with Padlock class in mind.
  * I will modify this later to make it more general.
  * @author ilorenzo
+ * @param <E>
  */
 public class CircularDoubleLinkedList<E> {
     private DoublyLinkedListNode<E> firstNode;
@@ -100,6 +103,10 @@ public class CircularDoubleLinkedList<E> {
         }
     }
     
+    /**
+     *
+     * @param obj
+     */
     public void addFirst(E obj){
         DoublyLinkedListNode<E> newNode = 
                 new DoublyLinkedListNode<>(obj,null,null);
@@ -118,6 +125,22 @@ public class CircularDoubleLinkedList<E> {
             firstNode = newNode;
             size++;
         }
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public E element(){
+        return firstNode.getValue();
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public CircularListIterator listIterator(){
+        return new CircularListIterator<E>(firstNode);
     }
     
     /**
@@ -145,5 +168,71 @@ public class CircularDoubleLinkedList<E> {
         System.out.print(pointer.getValue());
         System.out.println("\n"+size);
     }
-    */
+    */ 
+    
+    public class CircularListIterator<E> implements ListIterator<E>{
+        public DoublyLinkedListNode<E> current;
+        
+        public CircularListIterator(DoublyLinkedListNode<E> current){
+            this.current = current;
+        }
+        
+        @Override
+        public boolean hasNext(){
+            return current.getNext() != null;
+        }
+        
+        @Override
+        public boolean hasPrevious(){
+            return current.getPrev() != null;
+        }
+        
+        @Override
+        public E next(){
+            if(!hasNext())
+                return null;
+            current = current.getNext();
+            return current.getValue();
+        }
+        
+        @Override
+        public E previous() {
+            if(!hasPrevious())
+                return null;
+            current = current.getPrev();
+            return current.getValue();
+        }
+        
+        public void setToFirst(){
+            while(current.getNext() != firstNode)
+                current.getNext();
+        }
+
+        @Override
+        public int nextIndex() {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+
+        @Override
+        public int previousIndex() {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+
+        @Override
+        public void set(E e) {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+
+        @Override
+        public void add(E e) {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+    }
 }
+
+

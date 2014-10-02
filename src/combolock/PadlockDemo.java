@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab NumberHere
+ * Lab 2-A
  */
 package combolock;
 

@@ -118,8 +118,8 @@ public class Polynomial {
     }
     
     public void addPolyNodeFirst(int coefficient, int exponent){
-        //Check to see if exponent is a positive number
-        if(exponent < 0)
+        //Check to see if exponent is a positive number(-1 = no exponent)
+        if(exponent < -1)
             throw new IllegalArgumentException("Exponent must be a positive"
                     + " integer.");
         //Check to see if Polynomial is empty
@@ -130,8 +130,8 @@ public class Polynomial {
     }
     
     public void addPolyNodeLast(int coefficient, int exponent){
-        //Check to see if exponent is a positive number
-        if(exponent < 0)
+        //Check to see if exponent is a positive number(-1 = no exponent)
+        if(exponent < -1)
             throw new IllegalArgumentException("Exponent must be a positive"
                     + " integer.");
         //Check to see if Polynomial is empty
@@ -147,8 +147,8 @@ public class Polynomial {
     }
     
     public boolean addPolyNode(int coefficient, int exponent){
-        //Check to see if exponent is a positive number
-        if(exponent < 0)
+        //Check to see if exponent is a positive number(-1 = no exponent)
+        if(exponent < -1)
             throw new IllegalArgumentException("Exponent must be a positive"
                     + " integer.");
         //Check to see if Polynomial is empty
@@ -168,7 +168,45 @@ public class Polynomial {
     }
     
     public Polynomial addPolynomials(Polynomial p2){
-        return null;
+        Polynomial polySum = new Polynomial();
+        
+        int x, y;
+        
+        PolyNode tempNode1 = this.firstNode;
+        PolyNode tempNode2 = p2.firstNode;
+        
+        while(tempNode1 != null && tempNode2 != null){
+            if(tempNode1.getExponent() == tempNode2.getExponent()){
+                x = tempNode1.getCoefficient() + tempNode2.getCoefficient();
+                y = tempNode1.getExponent();
+                tempNode1 = tempNode1.getNext();
+                tempNode2 = tempNode2.getNext();
+            }else if(tempNode1.getExponent() > tempNode2.getExponent()){
+                x = tempNode1.getCoefficient();
+                y = tempNode1.getExponent();
+                tempNode1 = tempNode1.getNext();
+            }else{
+                x = tempNode2.getCoefficient();
+                y = tempNode2.getExponent();
+                tempNode2 = tempNode2.getNext();
+            }
+            polySum.addPolyNode(x, y);
+        }
+        
+        while(tempNode1 != null){
+            x = tempNode1.getCoefficient();
+            y = tempNode1.getExponent();
+            tempNode1 = tempNode1.getNext();
+            polySum.addPolyNode(x, y);
+        }
+        
+        while(tempNode2 != null){
+            x = tempNode2.getCoefficient();
+            y = tempNode2.getExponent();
+            tempNode2 = tempNode2.getNext();
+            polySum.addPolyNode(x, y);
+        }
+        return polySum;
     }
     
     @Override
@@ -176,10 +214,22 @@ public class Polynomial {
         PolyNode current = firstNode;
         String str = "";
         
-        while(current.getNext() != null){
-            str += current.getCoefficient();
+        if(isEmpty())
+            return "The polynomial is empty!";
+        
+        while(current != null){
+            
+            if(current == firstNode)
+                str += current.getCoefficient();
+            
+            if(current != firstNode && current.getCoefficient() > 0)
+                str+= " + " + current.getCoefficient();
+            else if(current != firstNode && current.getCoefficient() < 0){
+                str +=" - " + Math.abs(current.getCoefficient());
+            }
+            
             //check to see if the current variable has an exponent
-            if(current.getExponent() != 0)
+            if(current.getExponent() != -1)
                 str += "x";
             //check to see if the exponent is greater that one
             //if not only the variable will show otherwise
@@ -188,6 +238,7 @@ public class Polynomial {
                 str += "^" + current.getExponent() + " ";
             current = current.getNext();
         }
+        
         
         return str;
         

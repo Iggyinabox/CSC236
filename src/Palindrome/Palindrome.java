@@ -12,10 +12,13 @@ package Palindrome;
 public class Palindrome {
     
     public static void main(String[] args){
-        if(detector("Too bad--I hid a boot"))
-            System.out.println("This is a Palindrome");
+        
+        String str = "Gateman sees my name, garageman sees name tag";
+        
+        if(detector(str))
+            System.out.println(str +" - is a Palindrome");
         else
-            System.out.println("This is not a Palindrome");
+            System.out.println(str +" - is not a Palindrome");
     }
     //Method to detect if String passed to it is a palindrome
     //Returns true if it is false is it is not
@@ -41,7 +44,7 @@ public class Palindrome {
             if(splitStr[i].equals(stackArr.pop()))
                 isPalindrome = true;
             else
-                isPalindrome = false;
+                return false;
         }
         return isPalindrome;
     }

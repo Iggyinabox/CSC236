@@ -13,10 +13,12 @@ package primefactors;
 public class PrimeFactors {
     
     public static void main(String[] args){
+        
+        int number = 156870;
         //Create a stack holding all the prime factors of the number that
         //is passed to the findPrimeFactors method
-        StackLinkedList<Integer> list = findPrimeFactors(3960);
-        
+        StackLinkedList<Integer> list = findPrimeFactors(number);
+        System.out.print("Prime Factors of "+ number + " are : ");
         //Prints out the prime factors by poping them out of the stack
         while(!list.empty()){
             System.out.print(list.pop());

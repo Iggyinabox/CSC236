@@ -6,22 +6,29 @@
 package primefactors;
 
 /**
- *
+ * This class looks for all the prime factors of a number:
+ * 
  * @author ilorenzo
  */
 public class PrimeFactors {
     
     public static void main(String[] args){
+        //Create a stack holding all the prime factors of the number that
+        //is passed to the findPrimeFactors method
         StackLinkedList<Integer> list = findPrimeFactors(3960);
+        
+        //Prints out the prime factors by poping them out of the stack
         while(!list.empty()){
             System.out.print(list.pop());
-            
+            //while the list has a next and it is not empty add a
+            //multiplication sign.
             if(list.hasNext() && !list.empty())
                 System.out.print(" * ");
         }
         System.out.println();
     }
-    
+    //Looks for all prime factors of a number and when it finds one it
+    //pushes it onto a stack to be stored.
     public static StackLinkedList<Integer> findPrimeFactors(int number){
         StackLinkedList<Integer> list = new StackLinkedList<Integer>();
         for(int i = 2; i <= number;i++){

@@ -11,7 +11,8 @@ import java.util.Scanner;
 import primefactors.StackLinkedList;
 
 /**
- *
+ * This class will ask the user for the base 10 number and convert it down
+ * to base 9-2.
  * @author ilorenzo
  */
 public class Base {
@@ -24,7 +25,7 @@ public class Base {
         
         String check = "y";
         
-        
+        //While loop to give user the choice of calculating another base 10
         while(check.toLowerCase().equals("y")){
             
             System.out.print("What is your base 10 number?:(Please pick "
@@ -69,13 +70,15 @@ public class Base {
             
             base = temp;
             
+            //Creates a Stack that holds the coverted base
             StackLinkedList<Integer> answer = convertBase(number, base);
             
             System.out.print(number + " Base 10" + " = ");
-            
+            //Run through the stack pulling  out the remainders to give you
+            //the converted base
             while(!answer.empty()){
                 System.out.print(answer.pop());
-
+                //Add the base after the last remainder is placed
                 if(!answer.hasNext())
                     System.out.print(" Base " + base);
             }
@@ -83,6 +86,7 @@ public class Base {
             System.out.print("Would you like to keep covering "
                     + "bases of 10? (y/n) :");
             String tempStr = key.next();
+            //Make sure input is valid
             while(!tempStr.toLowerCase().equals("y") && 
                     !tempStr.toLowerCase().equals("n")){
                 System.out.println("Inavild selection: " + tempStr);
@@ -94,6 +98,8 @@ public class Base {
         }
     }
     
+    //This method coverts the base 10 number down to a base 2-9
+    //It stores the remainder in a stack and returns the stack
     public static StackLinkedList<Integer> convertBase(int number, int base){
         StackLinkedList<Integer> remainders = new StackLinkedList<Integer>();
         for(;number / base != 0;number /= base){

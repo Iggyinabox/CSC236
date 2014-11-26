@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab NumberHere
+ * Lab 6-B
  */
 package aHeapOfTrouble;
 
@@ -9,6 +9,14 @@ package aHeapOfTrouble;
  *
  * @author ilorenzo
  */
-public interface PriorityQueue {
+public interface PriorityQueue<T extends Comparable<T>> {
+    
+    boolean isEmpty();
+    
+    boolean isFull();
+    
+    void enqueue(T element);
+    
+    T dequeue();
     
 }

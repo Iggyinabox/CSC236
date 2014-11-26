@@ -58,15 +58,15 @@ public class BinaryTree implements Tree{
     public BinaryTree(){
         root = null;
     }
-    
+    //return treu if tree is empty
     public boolean isEmpty(){
         return root == null;
     }
-    
+    //insert value into the tree
     public void insert(int value){
         root = insert(root, value);
     }
-    
+ 
     private BinaryTreeNode insert(BinaryTreeNode node, int value){
         if(node == null)
             node = new BinaryTreeNode(value);
@@ -92,7 +92,7 @@ public class BinaryTree implements Tree{
         System.out.print(node.value + "  ");
         printTree(node.rightChild);
     }
-
+    //swap the left and right subtrees
     public void swapSubtrees() {
         swapSubtrees(root);
     }
@@ -109,7 +109,7 @@ public class BinaryTree implements Tree{
         node.rightChild = temp;
         }
     } 
-    
+    //Count the ammount of single partents in the tree
     public int singleParent(){
         return singleParent(root);
     }
@@ -117,16 +117,21 @@ public class BinaryTree implements Tree{
     public int singleParent(BinaryTreeNode node){
         if(node == null || countTheKids(node)==0)
             return 0;
+        //If the countTheKids method returns 1 this means this is a single
+        //parent
         if(countTheKids(node)==1){
+            //Recustivly add 1 when a single parent is found
             return 1 + singleParent(node.getLeft()) 
                     + singleParent(node.getRight());
         }
         if(countTheKids(node)==2){
+            //just pass on through nothing to see here! This parent has 2 kids
             return singleParent(node.getLeft()) + singleParent(node.getRight());
         }
         return 0;
     }
-    
+    //helper method for the singleParent method
+    //This checks the ammount of kids a node has
     public int countTheKids(BinaryTreeNode node){
        int numberOfKids = 0;
        if(node.getLeft() != null)
@@ -136,8 +141,7 @@ public class BinaryTree implements Tree{
        return numberOfKids;
     }
     /**
-    Given a binary tree, prints out all of its root-to-leaf
-    paths, one per line. Uses a recursive helper to do the work.
+    Prints out all of its root-to-leaf paths
     */
     public void printPaths() {
         int[] path = new int[1000];
@@ -145,26 +149,24 @@ public class BinaryTree implements Tree{
     }
 
     /**
-    Recursive printPaths helper -- given a node, and an array containing
-    the path from the root node up to but not including this node,
-    prints out all the root-leaf paths.
+    Given a node,prints out all the root-leaf paths.
     */
     private void printPaths(BinaryTreeNode node, int[] path, int pathLen) {
-    if (node==null) return;
+        if (node==null) return;
 
-        // append this node to the path array
-        path[pathLen] = node.value;
-        pathLen++;
+            // append this node to the path array
+            path[pathLen] = node.value;
+            pathLen++;
 
-    // it's a leaf, so print the path that led to here
-    if (node.leftChild==null && node.rightChild==null) {
-        printArray(path, pathLen);
-    }
-    else {
-        // otherwise try both subtrees
-        printPaths(node.leftChild, path, pathLen);
-        printPaths(node.rightChild, path, pathLen);
-    }
+        // it's a leaf, so print the path that led to here
+        if (node.leftChild==null && node.rightChild==null) {
+            printArray(path, pathLen);
+        }
+        else {
+            // otherwise try both subtrees
+            printPaths(node.leftChild, path, pathLen);
+            printPaths(node.rightChild, path, pathLen);
+        }
     }
     private void printArray(int[] ints, int len) {
         int i;

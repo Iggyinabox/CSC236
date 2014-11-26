@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab Lab 6-B
+ * Lab 6-B
  */
 package aHeapOfTrouble;
 
@@ -22,15 +22,15 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
         lastIndex = -1;
         maxIndex = maxSize-1;
     }
-    
+    //return false if heap is full
     public boolean isEmpty(){
         return (lastIndex == -1);
     }
-    
+    //return true if heap is full
     public boolean isFull(){
         return (lastIndex == maxIndex);
     }
-    
+    //inserts the element and brings it up the heap if needed
     public void enqueue(T element) throws PriorityQOverflowException{
         if(lastIndex == maxIndex)
             throw new PriorityQOverflowException("Priority queue is full");
@@ -40,7 +40,8 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
             upHeap(element);
         }
     }
-    
+    //Pops the highest priority element aka root by swaping it with the lowest
+    //leaf and pushing it back down the heap.
     public T dequeue() throws PriorityQUnderflowException{
         T hold; //Element that is held then returned
         T temp; //Element that will move down the heap
@@ -56,7 +57,7 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
             return hold;
         }
     }
-    
+    //This method will take an element up the heap
     public void upHeap(T element){
         int hole = lastIndex;
         while((hole > 0) && (element.compareTo(elements.get((hole-1)/2)) > 0)){
@@ -65,7 +66,7 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
         }
         elements.set(hole, element);
     }
-    
+    //this method will take a element down the heap
     public void downHeap(T element){
         int hole = 0;
         int newhole;
@@ -117,7 +118,7 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
                         //element < left child
                         return left;
     }
-    
+    //Draw tree based off where it is in priority
     public String toString(){
         String heapTree = new String("Heap Tree:\n");
         

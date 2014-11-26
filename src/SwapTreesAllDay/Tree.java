@@ -10,10 +10,10 @@ package SwapTreesAllDay;
  * @author ilorenzo
  */
 public interface Tree{
-    
-    public boolean isEmpty();
-    
-    public void insert(int value);
-    
-    public void printTree();
+    //returns true if Tree is empty
+    boolean isEmpty();
+    //incert value into the tree.
+    void insert(int value);
+    //Print the tree inorder
+    void printTree();
 }

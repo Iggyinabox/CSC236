@@ -12,7 +12,7 @@ package aHeapOfTrouble;
 public class HeapTest {
     public static void main(String []args){
         PriorityQueue<String> heap = new Heap<String>(10);
-        
+        //push over elements
         heap.enqueue("I");
         heap.enqueue("C");
         heap.enqueue("S");
@@ -25,10 +25,10 @@ public class HeapTest {
         heap.enqueue("L");
         
         System.out.println(heap);
-        
+        //dequeue 3 elements
         for(int i =0;i < 3; i++)
             System.out.println("Dequeue: " + heap.dequeue());
-        
+        //print out heap!
         System.out.println("\n"+heap);
     }
 }

@@ -1,7 +1,7 @@
 /*
  * Ignacio Lorenzo
  * CSC 236-64
- * Lab NumberHere
+ * Lab 6-A
  */
 package SwapTreesAllDay;
 
@@ -22,6 +22,7 @@ public class BinaryTreeTest {
         tree1.insert(6);
         
         //That hardcodding to get the one on top
+        //couldnt find another way to do this
         tree1.root.setValue(1);
         tree1.root.getLeft().setValue(2);
         tree1.root.getRight().setValue(3);

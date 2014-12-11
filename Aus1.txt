@@ -1,0 +1,10 @@
+9
+0 Sydney 1 2 -999
+1 Canberra 0 3 4 -999
+2 Melborne 1 5 -999
+3 Brisbane 0 -999
+4 Adelaide 2 6 -999
+5 Hobart 2 -999
+6 Perth 7 -999
+7 Black_Stump 8 -999
+8 Darwin 0 -999

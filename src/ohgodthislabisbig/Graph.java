@@ -154,7 +154,7 @@ public class Graph implements GraphInterface {
             visited[ind] = false;   //initialize the array
                                     //visited to false
 
-        for (int index = 0; index < gSize; index++)
+        for (int index = 0; index < gSize; index++){
             if (!visited[index]){
                queue.addQueue(index);
                visited[index] = true;
@@ -179,6 +179,7 @@ public class Graph implements GraphInterface {
                         }
                     }
                 } 
-            } 
+            }
+        }
     }
 }

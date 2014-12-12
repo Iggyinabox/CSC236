@@ -56,7 +56,7 @@ public class Graph implements GraphInterface {
         Scanner infile = null;
 
         try{
-            System.out.print("Enter input file name: ");
+            System.out.print("Input file name: ");
             fileName = console.nextLine();
             System.out.println();
 

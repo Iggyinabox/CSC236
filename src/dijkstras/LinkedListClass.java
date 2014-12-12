@@ -3,7 +3,7 @@
  * CSC 236-64
  * Lab Lab 7-A
  */
-package ausgraph;
+package dijkstras;
 
 import java.util.NoSuchElementException;
 
@@ -16,21 +16,18 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
     protected class LinkedListNode<T> implements Cloneable
     {
         public T info;
-        public T name;
         public LinkedListNode<T> link;
         public boolean marked;
         //Default constructor
         //Postcondition: info = null; link = null;
         public LinkedListNode(){
             info = null;
-            name = null;
             link = null;
             marked = false;
         }
         //Constructor with parameters
-        public LinkedListNode(T elem, T name, LinkedListNode<T> ptr){
+        public LinkedListNode(T elem, LinkedListNode<T> ptr){
             info = elem;
-            this.name = name;
             link = ptr;
             marked = false;
         }
@@ -40,6 +37,9 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
         }
         
         //Returns a copy of objects data in store.
+        //This method clones only the references stored in
+        //the node. The objects that the nodes point to
+        //are not cloned.
         public Object clone(){
             LinkedListNode<T> copy = null;
             try{
@@ -52,7 +52,7 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
         }
         //Method to return the info as a string.
         public String toString(){
-            return name.toString();
+            return info.toString();
         }
     } //end class LinkedListNode
     
@@ -66,6 +66,7 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
         }
         //Method to reset the iterator to the first node
         //in the list.
+        //Postcondition: current = first; previous = null;
         public void reset(){
             current = (LinkedListNode<T>) first;
             previous = null;
@@ -128,7 +129,7 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
         last = null;
         count = 0;
     }
-    //Method to determine whether the list is empty.
+    //Method lets you know if list is empty
     public boolean isEmpty(){
         return (first == null);
     }
@@ -142,20 +143,24 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
         }
     }
     //Method to return the number of nodes in the list.
+    //Postcondition: The value of count is returned.
     public int length(){
         return count;
     }
     //Method to return a reference of the object containing
     //the data of the first node of the list.
+    //Precondition: The list must exist and must not be empty.e first node
+    // is returned.
     public T front(){
         return first.info;
     }
     //Method to return a reference of object containing
     //the data of the last node of the list.
+    //Precondition: The list must not be empty
     public T back(){
         return last.info;
     }
-    //Returns a copy of objects data in store.
+    //Returns a copy of objects data in store
     public Object clone(){
         LinkedListClass<T> copy = null;
         try{
@@ -190,7 +195,7 @@ public abstract class LinkedListClass<T> implements LinkedListInterface<T>
     //Method to determine whether searchItem is in
     //the list.
     public abstract boolean search(T searchItem);
-    public abstract void insertFirst(T newItem, T name);
-    public abstract void insertLast(T newItem, T name);
+    public abstract void insertFirst(T newItem);
+    public abstract void insertLast(T newItem);
     public abstract void deleteNode(T deleteItem);
     }
